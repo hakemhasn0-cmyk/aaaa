@@ -327,9 +327,41 @@
             color: white;
             font-weight: bold;
         }
+        
+        .empty-state {
+            text-align: center;
+            padding: 2rem;
+            color: #888;
+        }
+        
+        .empty-state i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #ccc;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
     </style>
 </head>
 <body>
+    <div class="notification" id="notification">تم نسخ الرابط إلى الحافظة!</div>
+    
     <header>
         <div class="header-content">
             <h1><i class="fas fa-hands-helping"></i> تبرعات إصلاح طرق قرية الشغور</h1>
@@ -383,18 +415,20 @@
         
         <div class="card donors-list">
             <h2><i class="fas fa-users"></i> قائمة المتبرعين</h2>
-            <table id="donorsTable">
-                <thead>
-                    <tr>
-                        <th>الاسم</th>
-                        <th>قيمة التبرع</th>
-                        <th>رسالة</th>
-                    </tr>
-                </thead>
-                <tbody id="donorsList">
-                    <!-- سيتم ملء هذه القائمة عبر JavaScript -->
-                </tbody>
-            </table>
+            <div id="donorsContainer">
+                <table id="donorsTable">
+                    <thead>
+                        <tr>
+                            <th>الاسم</th>
+                            <th>قيمة التبرع</th>
+                            <th>رسالة</th>
+                        </tr>
+                    </thead>
+                    <tbody id="donorsList">
+                        <!-- سيتم ملء هذه القائمة عبر JavaScript -->
+                    </tbody>
+                </table>
+            </div>
         </div>
         
         <div class="share-section">
@@ -409,6 +443,9 @@
                 <button class="share-button" onclick="shareOnFacebook()">
                     <i class="fab fa-facebook"></i> فيسبوك
                 </button>
+                <button class="share-button" onclick="clearData()" style="background-color: #f44336;">
+                    <i class="fas fa-trash"></i> مسح البيانات
+                </button>
             </div>
         </div>
     </div>
@@ -419,9 +456,40 @@
     </footer>
 
     <script>
-        // استرجاع البيانات من localStorage إذا كانت موجودة
-        let donors = JSON.parse(localStorage.getItem('donors')) || [];
-        let totalAmount = parseInt(localStorage.getItem('totalAmount')) || 0;
+        // بيانات المتبرعين
+        let donors = [];
+        let totalAmount = 0;
+        
+        // دالة التهيئة عند تحميل الصفحة
+        function init() {
+            loadData();
+            checkUrlParams();
+            setupAmountButtons();
+            setupEventListeners();
+        }
+        
+        // تحميل البيانات من localStorage
+        function loadData() {
+            const savedDonors = localStorage.getItem('donors');
+            const savedTotal = localStorage.getItem('totalAmount');
+            
+            if (savedDonors) {
+                donors = JSON.parse(savedDonors);
+            }
+            
+            if (savedTotal) {
+                totalAmount = parseInt(savedTotal);
+            }
+            
+            updateTotalAmount();
+            displayDonors();
+        }
+        
+        // حفظ البيانات إلى localStorage
+        function saveData() {
+            localStorage.setItem('donors', JSON.stringify(donors));
+            localStorage.setItem('totalAmount', totalAmount.toString());
+        }
         
         // عند تحميل الصفحة، التحقق من وجود معلمات في الرابط
         function checkUrlParams() {
@@ -431,21 +499,32 @@
             
             if (totalParam && donorsParam) {
                 try {
-                    totalAmount = parseInt(totalParam);
-                    donors = JSON.parse(decodeURIComponent(donorsParam));
+                    // دمج البيانات من الرابط مع البيانات المحلية
+                    const urlTotal = parseInt(totalParam);
+                    const urlDonors = JSON.parse(decodeURIComponent(donorsParam));
                     
-                    localStorage.setItem('donors', JSON.stringify(donors));
-                    localStorage.setItem('totalAmount', totalAmount);
+                    // دمج المتبرعين الجدد مع القائمة الحالية
+                    urlDonors.forEach(newDonor => {
+                        const exists = donors.some(d => d.name === newDonor.name && d.amount === newDonor.amount && d.message === newDonor.message);
+                        if (!exists) {
+                            donors.push(newDonor);
+                        }
+                    });
+                    
+                    // تحديث الإجمالي
+                    totalAmount = Math.max(totalAmount, urlTotal);
+                    
+                    // حفظ البيانات المدمجة
+                    saveData();
                     
                     updateTotalAmount();
                     displayDonors();
                 } catch (e) {
                     console.error("Error parsing URL parameters:", e);
+                    displayEmptyState();
                 }
-            } else {
-                // إذا لم توجد معلمات في الرابط، استخدام البيانات المحلية
-                updateTotalAmount();
-                displayDonors();
+            } else if (donors.length === 0) {
+                displayEmptyState();
             }
         }
         
@@ -460,7 +539,7 @@
             donorsList.innerHTML = '';
             
             if (donors.length === 0) {
-                donorsList.innerHTML = '<tr><td colspan="3" style="text-align: center; padding: 2rem;">لا يوجد متبرعين حتى الآن</td></tr>';
+                displayEmptyState();
                 return;
             }
             
@@ -474,6 +553,36 @@
                 `;
                 donorsList.appendChild(row);
             });
+            
+            // إخفاء حالة عدم وجود متبرعين إن كانت موجودة
+            const emptyState = document.getElementById('emptyState');
+            if (emptyState) {
+                emptyState.remove();
+            }
+            
+            // إظهار الجدول
+            document.getElementById('donorsTable').style.display = 'table';
+        }
+        
+        // عرض حالة عدم وجود متبرعين
+        function displayEmptyState() {
+            const donorsContainer = document.getElementById('donorsContainer');
+            const existingEmptyState = document.getElementById('emptyState');
+            
+            if (existingEmptyState) return;
+            
+            document.getElementById('donorsTable').style.display = 'none';
+            
+            const emptyState = document.createElement('div');
+            emptyState.id = 'emptyState';
+            emptyState.className = 'empty-state';
+            emptyState.innerHTML = `
+                <i class="fas fa-users-slash"></i>
+                <h3>لا يوجد متبرعين حتى الآن</h3>
+                <p>كن أول من يساهم في هذه المبادرة الخيرية</p>
+            `;
+            
+            donorsContainer.appendChild(emptyState);
         }
         
         // تحديث الرابط ليكون قابلاً للمشاركة
@@ -491,8 +600,19 @@
         function copyLink() {
             const url = updateUrl();
             navigator.clipboard.writeText(url).then(() => {
-                alert('تم نسخ الرابط إلى الحافظة!');
+                showNotification('تم نسخ الرابط إلى الحافظة!');
             });
+        }
+        
+        // عرض إشعار
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
         }
         
         // مشاركة عبر واتساب
@@ -505,6 +625,19 @@
         function shareOnFacebook() {
             const url = updateUrl();
             window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
+        }
+        
+        // مسح جميع البيانات
+        function clearData() {
+            if (confirm('هل أنت متأكد من أنك تريد مسح جميع بيانات المتبرعين؟ لا يمكن التراجع عن هذا الإجراء.')) {
+                donors = [];
+                totalAmount = 0;
+                saveData();
+                updateTotalAmount();
+                displayEmptyState();
+                window.history.replaceState({}, '', window.location.pathname);
+                showNotification('تم مسح جميع البيانات بنجاح');
+            }
         }
         
         // إعداد أزرار اختيار المبلغ
@@ -524,11 +657,8 @@
             });
         }
         
-        // عند تحميل الصفحة
-        document.addEventListener('DOMContentLoaded', function() {
-            checkUrlParams();
-            setupAmountButtons();
-            
+        // إعداد مستمعي الأحداث
+        function setupEventListeners() {
             // معالجة تقديم النموذج
             document.getElementById('donationForm').addEventListener('submit', function(e) {
                 e.preventDefault();
@@ -543,8 +673,7 @@
                     totalAmount += amount;
                     
                     // حفظ البيانات في localStorage
-                    localStorage.setItem('donors', JSON.stringify(donors));
-                    localStorage.setItem('totalAmount', totalAmount);
+                    saveData();
                     
                     // تحديث العرض
                     updateTotalAmount();
@@ -568,7 +697,10 @@
                     }, 5000);
                 }
             });
-        });
+        }
+        
+        // عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
 </html>
