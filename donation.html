@@ -3,51 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تبرع لإصلاح طرق قرية الشغور</title>
+    <title>تبرعات قرية الشغور - إصلاح الطرق</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #2a6b3f;
+            --primary-color: #2e7d32;
             --secondary-color: #4caf50;
-            --accent-color: #8bc34a;
-            --dark-color: #1b4332;
-            --light-color: #f1f8e9;
-            --gold-color: #d4af37;
-            --text-color: #333;
-            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --accent-color: #ff9800;
+            --light-color: #f5f5f5;
+            --dark-color: #333;
+            --text-color: #444;
         }
         
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Tajawal', sans-serif;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            background: linear-gradient(135deg, #f9f9f9 0%, #e6f4e6 100%);
+            background: linear-gradient(135deg, #f9f9f9 0%, #e0f7fa 100%);
             color: var(--text-color);
             line-height: 1.6;
             min-height: 100vh;
-            padding-bottom: 50px;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect fill="%232a6b3f" fill-opacity="0.05" width="10" height="10"/></svg>');
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+            padding-bottom: 2rem;
         }
         
         header {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
             text-align: center;
-            padding: 40px 20px;
-            border-radius: 0 0 30px 30px;
-            box-shadow: var(--shadow);
-            margin-bottom: 30px;
+            padding: 2.5rem 1rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             position: relative;
             overflow: hidden;
         }
@@ -59,987 +47,528 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect fill="%23ffffff" fill-opacity="0.1" width="15" height="15"/></svg>');
-            pointer-events: none;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.05"><path fill="white" d="M50 0 L100 50 L50 100 L0 50 Z"></path></svg>');
+            background-size: 100px;
         }
         
-        .village-name {
-            font-size: 2.8rem;
-            margin-bottom: 10px;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-        
-        header p {
-            font-size: 1.2rem;
-            max-width: 800px;
+        .header-content {
+            max-width: 1200px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
         
-        .data-explanation {
-            background-color: #fff8e1;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 20px 0;
-            border-right: 5px solid #ffc107;
-            text-align: center;
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1.2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
         }
         
-        .data-explanation h3 {
-            color: #d84315;
-            margin-bottom: 15px;
-        }
-        
-        .quran-verse {
-            background: linear-gradient(135deg, var(--dark-color) 0%, var(--primary-color) 100%);
-            color: white;
-            padding: 25px;
-            border-radius: 15px;
-            margin: 30px 0;
-            box-shadow: var(--shadow);
-            text-align: center;
+        .subtitle {
             font-size: 1.3rem;
-            line-height: 1.8;
-            position: relative;
-            border-right: 5px solid var(--gold-color);
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
         }
         
-        .quran-verse::before {
-            content: """;
-            font-size: 4rem;
-            color: var(--gold-color);
-            opacity: 0.3;
-            position: absolute;
-            top: 10px;
-            right: 20px;
-        }
-        
-        .verse-text {
+        .verse {
             font-style: italic;
-            margin-bottom: 10px;
-        }
-        
-        .verse-reference {
-            font-size: 1rem;
-            color: var(--gold-color);
-            margin-top: 15px;
-        }
-        
-        .progress-container {
-            background-color: white;
-            padding: 25px;
-            border-radius: 15px;
-            margin: 30px 0;
-            box-shadow: var(--shadow);
+            margin: 1.5rem 0;
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.95);
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            max-width: 800px;
             text-align: center;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid #e0e0e0;
+            line-height: 1.8;
         }
         
-        .progress-container h2 {
+        .container {
+            max-width: 1200px;
+            margin: 2.5rem auto;
+            padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        @media (max-width: 900px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.07);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+        }
+        
+        .donation-stats {
+            text-align: center;
+            grid-column: 1 / -1;
+        }
+        
+        .total-amount {
+            font-size: 3rem;
             color: var(--primary-color);
-            margin-bottom: 20px;
+            font-weight: bold;
+            margin: 1.5rem 0;
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-        
-        .progress-container h2 i {
-            margin-left: 10px;
-            color: var(--secondary-color);
-        }
-        
-        .progress-bar {
-            height: 35px;
-            background-color: #eee;
-            border-radius: 18px;
-            margin: 20px 0;
-            overflow: hidden;
-            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
-            border-radius: 18px;
-            transition: width 1s ease;
-            width: 0%;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .progress-fill::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            width: 20px;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            animation: progressShine 2s infinite;
-        }
-        
-        @keyframes progressShine {
-            0% { left: -20px; }
-            100% { left: 100%; }
-        }
-        
-        .progress-info {
-            display: flex;
-            justify-content: space-between;
-            font-weight: bold;
-            color: var(--dark-color);
-            font-size: 1.1rem;
-        }
-        
-        .progress-info span {
-            display: flex;
-            align-items: center;
-        }
-        
-        .progress-info i {
-            margin-left: 8px;
-            color: var(--primary-color);
-        }
-        
-        .project-info {
-            background-color: white;
-            padding: 30px;
-            border-radius: 15px;
-            margin: 30px 0;
-            box-shadow: var(--shadow);
-            border-right: 4px solid var(--accent-color);
-        }
-        
-        .project-info h2 {
-            color: var(--primary-color);
-            margin-bottom: 20px;
-            border-bottom: 2px solid var(--light-color);
-            padding-bottom: 10px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .project-info h2 i {
-            margin-left: 10px;
-            color: var(--secondary-color);
-        }
-        
-        .project-info p {
-            margin-bottom: 15px;
-            line-height: 1.8;
-        }
-        
-        .features {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-top: 25px;
-        }
-        
-        .feature {
-            flex: 1;
-            min-width: 250px;
-            background: var(--light-color);
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-        }
-        
-        .feature i {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 15px;
+            gap: 0.5rem;
         }
         
         .donation-form {
-            background-color: white;
-            padding: 30px;
-            border-radius: 15px;
-            margin: 30px 0;
-            box-shadow: var(--shadow);
-            border: 1px solid #e0e0e0;
-        }
-        
-        .donation-form h2 {
-            color: var(--secondary-color);
-            margin-bottom: 25px;
             display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .donation-form h2 i {
-            margin-left: 10px;
+            flex-direction: column;
         }
         
         .form-group {
-            margin-bottom: 25px;
+            margin-bottom: 1.5rem;
         }
         
-        .form-group label {
+        label {
             display: block;
-            margin-bottom: 10px;
-            font-weight: bold;
+            margin-bottom: 0.7rem;
+            font-weight: 600;
             color: var(--dark-color);
         }
         
-        .form-group input, .form-group textarea {
+        input, textarea, select {
             width: 100%;
-            padding: 15px;
-            border: 2px solid #ddd;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
             border-radius: 8px;
-            font-size: 16px;
+            font-size: 1rem;
             transition: border-color 0.3s;
         }
         
-        .form-group input:focus, .form-group textarea:focus {
-            border-color: var(--secondary-color);
+        input:focus, textarea:focus, select:focus {
             outline: none;
+            border-color: var(--secondary-color);
         }
         
-        .form-group textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
-        
-        .donate-btn {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+        button {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
             border: none;
-            padding: 16px 35px;
+            padding: 1.2rem 2.5rem;
+            font-size: 1.1rem;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 18px;
-            font-weight: bold;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: all 0.3s;
+            font-weight: 600;
+            margin-top: 1rem;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 100%;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            gap: 0.5rem;
         }
         
-        .donate-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-        }
-        
-        .donate-btn:active {
-            transform: translateY(0);
-        }
-        
-        .donate-btn i {
-            margin-left: 10px;
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(46, 125, 50, 0.3);
         }
         
         .donors-list {
-            background-color: white;
-            padding: 30px;
-            border-radius: 15px;
-            margin: 30px 0;
-            box-shadow: var(--shadow);
-            border: 1px solid #e0e0e0;
-        }
-        
-        .donors-list h2 {
-            color: var(--dark-color);
-            margin-bottom: 25px;
-            border-bottom: 2px solid var(--light-color);
-            padding-bottom: 10px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .donors-list h2 i {
-            margin-left: 10px;
-            color: var(--primary-color);
-        }
-        
-        .list-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-        
-        .search-box {
-            display: flex;
-            align-items: center;
-            background: #f9f9f9;
-            padding: 10px 15px;
-            border-radius: 8px;
-            border: 1px solid #ddd;
-        }
-        
-        .search-box input {
-            padding: 8px;
-            border: none;
-            background: transparent;
-            width: 200px;
-            font-size: 16px;
-        }
-        
-        .search-box input:focus {
-            outline: none;
-        }
-        
-        .search-box i {
-            color: var(--primary-color);
+            max-height: 500px;
+            overflow-y: auto;
         }
         
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            margin-top: 1rem;
         }
         
-        table th, table td {
-            padding: 16px 15px;
+        th, td {
+            padding: 1.2rem;
             text-align: right;
             border-bottom: 1px solid #eee;
         }
         
-        table th {
-            background-color: var(--light-color);
-            font-weight: bold;
+        th {
+            background-color: #f5f5f5;
+            font-weight: 600;
             color: var(--dark-color);
-            cursor: pointer;
-            transition: background-color 0.3s;
+            position: sticky;
+            top: 0;
         }
         
-        table th:hover {
-            background-color: #e4efe4;
-        }
-        
-        table tr {
-            transition: background-color 0.3s;
-        }
-        
-        table tr:hover {
+        tr:hover {
             background-color: #f9f9f9;
         }
         
-        .donor-name {
-            font-weight: 500;
-            color: var(--primary-color);
-        }
-        
-        .donation-amount {
-            font-weight: bold;
-            color: var(--secondary-color);
-        }
-        
-        .donation-message {
-            color: #666;
-            font-size: 0.9rem;
-        }
-        
-        .actions-cell {
-            display: flex;
-            gap: 8px;
-        }
-        
-        .share-btn {
-            background-color: #3b5998;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px;
-            display: inline-flex;
-            align-items: center;
-            transition: background-color 0.3s;
-        }
-        
-        .share-btn:hover {
-            background-color: #2d4373;
-        }
-        
-        .share-btn i {
-            margin-left: 5px;
-        }
-        
-        .delete-btn {
-            background-color: #e74c3c;
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px;
-            display: inline-flex;
-            align-items: center;
-            transition: background-color 0.3s;
-        }
-        
-        .delete-btn:hover {
-            background-color: #c0392b;
-        }
-        
-        .admin-panel {
-            background-color: white;
-            padding: 25px;
-            border-radius: 15px;
-            margin: 30px 0;
-            box-shadow: var(--shadow);
-            border: 2px dashed var(--primary-color);
-        }
-        
-        .admin-panel h3 {
-            color: var(--primary-color);
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .admin-panel h3 i {
-            margin-left: 10px;
-        }
-        
-        .admin-buttons {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-        
-        .admin-btn {
-            padding: 12px 20px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-            display: inline-flex;
-            align-items: center;
-            transition: transform 0.3s;
-        }
-        
-        .admin-btn:hover {
-            transform: translateY(-2px);
-        }
-        
-        .admin-btn i {
-            margin-left: 8px;
-        }
-        
-        .reset-btn {
-            background-color: #e74c3c;
-            color: white;
-        }
-        
-        .export-btn {
-            background-color: var(--secondary-color);
-            color: white;
-        }
-        
-        .sync-btn {
-            background-color: #2196F3;
-            color: white;
-        }
-        
-        .notification {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            padding: 18px 25px;
-            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--accent-color) 100%);
-            color: white;
-            border-radius: 10px;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        .thank-you {
             display: none;
-            z-index: 1000;
-            animation: slideIn 0.3s forwards;
-            max-width: 350px;
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            border-right: 5px solid var(--primary-color);
+            padding: 1.8rem;
+            margin-top: 2rem;
+            border-radius: 8px;
+            text-align: center;
         }
         
-        @keyframes slideIn {
-            from { transform: translateX(100px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
+        .thank-you h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
         }
         
-        .loader {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255,255,255,.3);
-            border-radius: 50%;
-            border-top-color: #fff;
-            animation: spin 1s ease-in-out infinite;
-            margin-right: 10px;
+        .share-section {
+            margin-top: 2rem;
+            text-align: center;
+            grid-column: 1 / -1;
         }
         
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .share-button {
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+        }
+        
+        .share-button:hover {
+            background-color: #e0e0e0;
         }
         
         footer {
             text-align: center;
-            margin-top: 50px;
-            padding: 25px;
-            color: #7f8c8d;
-            border-top: 1px solid #ddd;
+            padding: 2.5rem;
+            background: linear-gradient(135deg, var(--dark-color), #222);
+            color: white;
+            margin-top: 4rem;
+            border-top: 5px solid var(--accent-color);
         }
         
-        .heart {
-            color: #e74c3c;
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: white;
             display: inline-block;
-            animation: pulse 1.5s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            padding: 0.5rem 1.5rem;
+            border-radius: 12px;
         }
         
         @media (max-width: 768px) {
-            .village-name {
+            h1 {
                 font-size: 2.2rem;
             }
             
-            header p {
-                font-size: 1rem;
+            .verse {
+                font-size: 1.1rem;
+                padding: 0.8rem;
+            }
+            
+            .total-amount {
+                font-size: 2.2rem;
+            }
+            
+            th, td {
+                padding: 0.8rem;
             }
             
             .container {
-                padding: 15px;
+                gap: 1.5rem;
+                padding: 0 1rem;
             }
             
-            .list-header {
-                flex-direction: column;
-                align-items: flex-start;
+            .card {
+                padding: 1.5rem;
             }
-            
-            .search-box {
-                width: 100%;
-            }
-            
-            .search-box input {
-                width: 100%;
-            }
-            
-            table {
-                display: block;
-                overflow-x: auto;
-            }
-            
-            .features {
-                flex-direction: column;
-            }
-            
-            .admin-buttons {
-                flex-direction: column;
-            }
-            
-            .admin-btn {
-                width: 100%;
-                justify-content: center;
-            }
+        }
+        
+        .amount-buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        
+        .amount-button {
+            padding: 0.7rem;
+            text-align: center;
+            background-color: #f0f0f0;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .amount-button:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .amount-button.selected {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
     <header>
-        <div class="container">
-            <h1 class="village-name">قرية الشغور</h1>
-            <p>نعمل معاً من أجل طرق أفضل وقرية أجمل. تبرعك يصنع الفرق!</p>
+        <div class="header-content">
+            <h1><i class="fas fa-hands-helping"></i> تبرعات إصلاح طرق قرية الشغور</h1>
+            <p class="subtitle">يداً بيد نحو قرية أفضل</p>
+            <div class="verse">
+                <i class="fas fa-quote-right"></i>
+                "مَّثَلُ الَّذِينَ يُنفِقُونَ أَمْوَالَهُمْ فِي سَبِيلِ اللَّهِ كَمَثَلِ حَبَّةٍ أَنبَتَتْ سَبْعَ سَنَابِلَ فِي كُلِّ سُنْبُلَةٍ مِّائَةُ حَبَّةٍ ۗ وَاللَّهُ يُضَاعِفُ لِمَن يَشَاءُ ۗ وَاللَّهُ وَاسِعٌ عَلِيمٌ" (البقرة: 261)
+            </div>
         </div>
     </header>
     
     <div class="container">
-        <section class="data-explanation">
-            <h3><i class="fas fa-info-circle"></i> كيف تعمل مشاركة البيانات؟</h3>
-            <p>لضمان رؤية جميع المتبرعين لنفس البيانات، نقوم بحفظها على الإنترنت باستخدام GitHub Gist.</p>
-            <p>عندما تضيف تبرعاً، سيتم حفظه على الإنترنت ويمكن للجميع رؤيته فوراً!</p>
-        </section>
+        <div class="card donation-stats">
+            <h2><i class="fas fa-chart-line"></i> إجمالي التبرعات حتى الآن</h2>
+            <div class="total-amount" id="totalAmount">0 <span>ليرة تركية</span></div>
+            <p>شكراً لكل من ساهم في هذا العمل الخيري</p>
+        </div>
         
-        <section class="quran-verse">
-            <div class="verse-text">"مَّثَلُ الَّذِينَ يُنفِقُونَ أَمْوَالَهُمْ فِي سَبِيلِ اللَّهِ كَمَثَلِ حَبَّةٍ أَنبَتَتْ سَبْعَ سَنَابِلَ فِي كُلِّ سُنبُلَةٍ مِّائَةُ حَبَّةٍ ۗ وَاللَّهُ يُضَاعِفُ لِمَن يَشَاءُ ۗ وَاللَّهُ وَاسِعٌ عَلِيمٌ"</div>
-            <div class="verse-reference">سورة البقرة - الآية 261</div>
-        </section>
-        
-        <section class="progress-container">
-            <h2><i class="fas fa-chart-line"></i> حالة التبرعات</h2>
-            <div class="progress-bar">
-                <div class="progress-fill" id="progressFill"></div>
-            </div>
-            <div class="progress-info">
-                <span><i class="fas fa-hand-holding-usd"></i> المبلغ المحصل: <span id="collectedAmount">0</span> ليرة تركية</span>
-                <span><i class="fas fa-bullseye"></i> الهدف: 100,000 ليرة تركية</span>
-            </div>
-        </section>
-        
-        <section class="project-info">
-            <h2><i class="fas fa-info-circle"></i> عن المشروع</h2>
-            <p>طرق قرية الشغور تعاني من التدهور منذ سنوات، مما يسبب مشاكل يومية لأهالي القرية ويصعب تنقلهم. هذا المشروع يهدف إلى إصلاح الطرق الرئيسية في القرية لخدمة جميع السكان.</p>
-            <p>تبلغ التكلفة التقديرية للمشروع 100,000 ليرة تركية. تبرعك سيساهم في تغيير حقيقي وسيسهل حياة الجميع.</p>
-            
-            <div class="features">
-                <div class="feature">
-                    <i class="fas fa-road"></i>
-                    <h3>إصلاح الطرق</h3>
-                    <p>تحسين البنية التحتية للطرق في قريتنا</p>
-                </div>
-                <div class="feature">
-                    <i class="fas fa-handshake"></i>
-                    <h3>تعاون المجتمع</h3>
-                    <p>عمل جماعي لتحقيق هدف مشترك</p>
-                </div>
-                <div class="feature">
-                    <i class="fas fa-chart-pie"></i>
-                    <h3>شفافية كاملة</h3>
-                    <p>جميع التبرعات مسجلة ومعروضة للجميع</p>
-                </div>
-            </div>
-        </section>
-        
-        <section class="donation-form">
-            <h2><i class="fas fa-donate"></i> سجل تبرعك</h2>
+        <div class="card donation-form">
+            <h2><i class="fas fa-donate"></i> سجل تبرعك التشجيعي</h2>
             <form id="donationForm">
                 <div class="form-group">
-                    <label for="name">الاسم الكامل</label>
-                    <input type="text" id="name" placeholder="أدخل اسمك بالكامل" required>
+                    <label for="name">الاسم (اختياري)</label>
+                    <input type="text" id="name" placeholder="يمكنك ترك الاسم匿名">
                 </div>
                 <div class="form-group">
-                    <label for="amount">مبلغ التبرع (ليرة تركية)</label>
-                    <input type="number" id="amount" placeholder="أدخل المبلغ" min="1" required>
+                    <label for="amount">قيمة التبرع (ليرة تركية)</label>
+                    <input type="number" id="amount" min="1" required placeholder="ادخل القيمة">
+                    
+                    <div class="amount-buttons">
+                        <div class="amount-button" data-amount="10">10</div>
+                        <div class="amount-button" data-amount="50">50</div>
+                        <div class="amount-button" data-amount="100">100</div>
+                        <div class="amount-button" data-amount="500">500</div>
+                        <div class="amount-button" data-amount="1000">1000</div>
+                        <div class="amount-button" data-amount="5000">5000</div>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label for="message">رسالة تبرع (اختياري)</label>
-                    <textarea id="message" placeholder="اكتب رسالة تشجيعية للأهالي أو دعوة للتبرع..."></textarea>
+                    <label for="message">رسالة تشجيع (اختياري)</label>
+                    <textarea id="message" rows="3" placeholder="اكتب رسالة تشجيعية"></textarea>
                 </div>
-                <button type="submit" class="donate-btn"><i class="fas fa-hand-holding-heart"></i> تبرع الآن</button>
+                <button type="submit"><i class="fas fa-hand-holding-heart"></i> تسجيل التبرع</button>
             </form>
-        </section>
-        
-        <section class="donors-list">
-            <div class="list-header">
-                <h2><i class="fas fa-users"></i> قائمة المتبرعين</h2>
-                <div class="search-box">
-                    <i class="fas fa-search"></i>
-                    <input type="text" id="searchInput" placeholder="ابحث عن متبرع...">
-                </div>
-            </div>
-            <p>شكراً لكل من ساهم في هذا المشروع الخيري. تبرعاتكم تُحدث فرقاً حقيقياً في قريتنا.</p>
             
-            <table>
+            <div class="thank-you" id="thankYouMessage">
+                <h3><i class="fas fa-check-circle"></i> شكراً لك على تبرعك!</h3>
+                <p>نسأل الله أن يتقبل منك ويجعلها في ميزان حسناتك.</p>
+            </div>
+        </div>
+        
+        <div class="card donors-list">
+            <h2><i class="fas fa-users"></i> قائمة المتبرعين</h2>
+            <table id="donorsTable">
                 <thead>
                     <tr>
-                        <th onclick="sortTable(0)">المتبرع <i class="fas fa-sort"></i></th>
-                        <th onclick="sortTable(1)">مبلغ التبرع <i class="fas fa-sort"></i></th>
+                        <th>الاسم</th>
+                        <th>قيمة التبرع</th>
                         <th>رسالة</th>
-                        <th>خيارات</th>
                     </tr>
                 </thead>
-                <tbody id="donorsTableBody">
-                    <!-- سيتم ملء هذا الجدول بالبيانات من GitHub Gist -->
+                <tbody id="donorsList">
+                    <!-- سيتم ملء هذه القائمة عبر JavaScript -->
                 </tbody>
             </table>
-        </section>
+        </div>
         
-        <section class="admin-panel">
-            <h3><i class="fas fa-cog"></i> لوحة التحكم</h3>
-            <p>لحذف جميع البيانات أو تصديرها أو مزامنتها مع الخادم</p>
-            <div class="admin-buttons">
-                <button onclick="resetAllData()" class="admin-btn reset-btn"><i class="fas fa-trash"></i> حذف البيانات المحلية</button>
-                <button onclick="exportData()" class="admin-btn export-btn"><i class="fas fa-download"></i> تصدير البيانات</button>
-                <button onclick="syncWithServer()" class="admin-btn sync-btn"><i class="fas fa-sync"></i> مزامنة البيانات</button>
+        <div class="share-section">
+            <h3><i class="fas fa-share-alt"></i> شارك الرابط لتشجيع الآخرين</h3>
+            <div class="share-buttons">
+                <button class="share-button" onclick="copyLink()">
+                    <i class="fas fa-copy"></i> نسخ الرابط
+                </button>
+                <button class="share-button" onclick="shareOnWhatsApp()">
+                    <i class="fab fa-whatsapp"></i> واتساب
+                </button>
+                <button class="share-button" onclick="shareOnFacebook()">
+                    <i class="fab fa-facebook"></i> فيسبوك
+                </button>
             </div>
-        </section>
-    </div>
-    
-    <div class="notification" id="notification">
-        <!-- سيتم ملء هذا بالإشعارات -->
+        </div>
     </div>
     
     <footer>
-        <div class="container">
-            <p>مشروع إصلاح طرق قرية الشغور - 2023 | صنع ب<span class="heart">❤</span> لأهالي القرية</p>
-        </div>
+        <div class="logo">قرية الشغور</div>
+        <p>جميع الحقوق محفوظة © 2023 | مبادرة إصلاح طرق قرية الشغور</p>
     </footer>
 
     <script>
-        // المتغيرات العامة
-        let donors = [];
-        const GIST_ID = '6dca6c6f7a7a1c7a6a7a6c7a6c7a6c7a'; // استبدل هذا بمعرف Gist الفعلي بعد إنشائه
-        const GIST_FILENAME = 'donors-data.json';
+        // استرجاع البيانات من localStorage إذا كانت موجودة
+        let donors = JSON.parse(localStorage.getItem('donors')) || [];
+        let totalAmount = parseInt(localStorage.getItem('totalAmount')) || 0;
         
-        // تهيئة الصفحة عند التحميل
-        document.addEventListener('DOMContentLoaded', function() {
-            loadDonors();
-            updateProgress();
-            setupSearch();
-        });
-        
-        // تحميل بيانات المتبرعين من GitHub Gist
-        async function loadDonors() {
-            try {
-                // أولاً حاول تحميل البيانات من localStorage (للسرعة)
-                const localDonors = localStorage.getItem('alshghourDonationDonors');
-                if (localDonors) {
-                    donors = JSON.parse(localDonors);
-                    renderDonorsTable();
-                    updateProgress();
-                }
-                
-                // ثم حاول تحميل البيانات من الخادم (للتحديثات)
-                showNotification('جاري تحميل البيانات من الخادم...', 'loading');
-                
-                const response = await fetch(`https://api.github.com/gists/${GIST_ID}`);
-                if (!response.ok) throw new Error('لم يتم العثور على البيانات على الخادم');
-                
-                const gistData = await response.json();
-                const content = gistData.files[GIST_FILENAME].content;
-                const serverDonors = JSON.parse(content);
-                
-                // دمج البيانات المحلية مع بيانات الخادم
-                donors = mergeDonors(donors, serverDonors);
-                saveDonorsLocally();
-                renderDonorsTable();
-                updateProgress();
-                
-                showNotification('تم تحميل البيانات بنجاح من الخادم');
-            } catch (error) {
-                console.error('Error loading donors:', error);
-                showNotification('جاري استخدام البيانات المحلية', 'warning');
-            }
-        }
-        
-        // دمج قوائم المتبرعين
-        function mergeDonors(localDonors, serverDonors) {
-            const merged = [...serverDonors];
+        // عند تحميل الصفحة، التحقق من وجود معلمات في الرابط
+        function checkUrlParams() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const totalParam = urlParams.get('total');
+            const donorsParam = urlParams.get('donors');
             
-            for (const localDonor of localDonors) {
-                const exists = merged.some(serverDonor => serverDonor.id === localDonor.id);
-                if (!exists) {
-                    merged.push(localDonor);
-                }
-            }
-            
-            return merged;
-        }
-        
-        // حفظ بيانات المتبرعين محلياً
-        function saveDonorsLocally() {
-            localStorage.setItem('alshghourDonationDonors', JSON.stringify(donors));
-        }
-        
-        // حفظ بيانات المتبرعين على GitHub Gist
-        async function saveDonorsToServer() {
-            try {
-                showNotification('جاري حفظ البيانات على الخادم...', 'loading');
-                
-                const response = await fetch(`https://api.github.com/gists/${GIST_ID}`, {
-                    method: 'PATCH',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        files: {
-                            [GIST_FILENAME]: {
-                                content: JSON.stringify(donors, null, 2)
-                            }
-                        }
-                    })
-                });
-                
-                if (!response.ok) throw new Error('فشل في حفظ البيانات على الخادم');
-                
-                showNotification('تم حفظ البيانات على الخادم بنجاح');
-            } catch (error) {
-                console.error('Error saving donors:', error);
-                showNotification('فشل في حفظ البيانات على الخادم', 'error');
-            }
-        }
-        
-        // إضافة تبرع جديد
-        document.getElementById('donationForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const name = document.getElementById('name').value;
-            const amount = parseInt(document.getElementById('amount').value);
-            const message = document.getElementById('message').value;
-            
-            if (name && amount) {
-                const newDonor = {
-                    id: Date.now(), // استخدام الطوابع الزمنية كمعرف فريد
-                    name: name,
-                    amount: amount,
-                    message: message,
-                    date: new Date().toLocaleDateString('ar-EG')
-                };
-                
-                donors.push(newDonor);
-                saveDonorsLocally();
-                renderDonorsTable();
-                updateProgress();
-                
-                // محاولة حفظ على الخادم
+            if (totalParam && donorsParam) {
                 try {
-                    await saveDonorsToServer();
-                } catch (error) {
-                    console.error('Failed to save to server:', error);
+                    totalAmount = parseInt(totalParam);
+                    donors = JSON.parse(decodeURIComponent(donorsParam));
+                    
+                    localStorage.setItem('donors', JSON.stringify(donors));
+                    localStorage.setItem('totalAmount', totalAmount);
+                    
+                    updateTotalAmount();
+                    displayDonors();
+                } catch (e) {
+                    console.error("Error parsing URL parameters:", e);
                 }
-                
-                // إعادة تعيين النموذج
-                document.getElementById('donationForm').reset();
-                
-                // إظهار الإشعار
-                showNotification(`شكراً لك ${name} على تبرعك بمبلغ ${amount.toLocaleString()} ليرة تركية!`);
+            } else {
+                // إذا لم توجد معلمات في الرابط، استخدام البيانات المحلية
+                updateTotalAmount();
+                displayDonors();
             }
-        });
+        }
         
-        // عرض بيانات المتبرعين في الجدول
-        function renderDonorsTable() {
-            const tableBody = document.getElementById('donorsTableBody');
-            tableBody.innerHTML = '';
+        // تحديث إجمالي المبلغ
+        function updateTotalAmount() {
+            document.getElementById('totalAmount').textContent = totalAmount.toLocaleString() + ' ليرة تركية';
+        }
+        
+        // عرض قائمة المتبرعين
+        function displayDonors() {
+            const donorsList = document.getElementById('donorsList');
+            donorsList.innerHTML = '';
             
             if (donors.length === 0) {
-                tableBody.innerHTML = '<tr><td colspan="4" style="text-align: center;">لا توجد تبرعات حتى الآن</td></tr>';
+                donorsList.innerHTML = '<tr><td colspan="3" style="text-align: center; padding: 2rem;">لا يوجد متبرعين حتى الآن</td></tr>';
                 return;
             }
             
-            donors.forEach(donor => {
+            // عرض أحدث المتبرعين أولاً
+            donors.slice().reverse().forEach(donor => {
                 const row = document.createElement('tr');
-                
                 row.innerHTML = `
-                    <td class="donor-name">${donor.name}</td>
-                    <td class="donation-amount">${donor.amount.toLocaleString()} ل.ت</td>
-                    <td class="donation-message">${donor.message || '—'}</td>
-                    <td class="actions-cell">
-                        <button class="share-btn" onclick="shareDonation('${donor.name}', ${donor.amount})">
-                            <i class="fab fa-facebook"></i> شارك
-                        </button>
-                        <button class="delete-btn" onclick="deleteDonation(${donor.id})">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </td>
+                    <td>${donor.name}</td>
+                    <td>${donor.amount.toLocaleString()} ليرة</td>
+                    <td>${donor.message}</td>
                 `;
-                
-                tableBody.appendChild(row);
+                donorsList.appendChild(row);
             });
         }
         
-        // تحديث شريط التقدم
-        function updateProgress() {
-            const total = donors.reduce((sum, donor) => sum + donor.amount, 0);
-            const progressPercent = (total / 100000) * 100;
+        // تحديث الرابط ليكون قابلاً للمشاركة
+        function updateUrl() {
+            const params = new URLSearchParams();
+            params.append('total', totalAmount);
+            params.append('donors', encodeURIComponent(JSON.stringify(donors)));
             
-            document.getElementById('collectedAmount').textContent = total.toLocaleString();
-            document.getElementById('progressFill').style.width = `${Math.min(progressPercent, 100)}%`;
+            const newUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
+            window.history.replaceState({}, '', newUrl);
+            return newUrl;
         }
         
-        // حذف تبرع
-        async function deleteDonation(id) {
-            if (confirm('هل أنت متأكد من أنك تريد حذف هذا التبرع؟')) {
-                donors = donors.filter(donor => donor.id !== id);
-                saveDonorsLocally();
-                renderDonorsTable();
-                updateProgress();
+        // نسخ الرابط إلى الحافظة
+        function copyLink() {
+            const url = updateUrl();
+            navigator.clipboard.writeText(url).then(() => {
+                alert('تم نسخ الرابط إلى الحافظة!');
+            });
+        }
+        
+        // مشاركة عبر واتساب
+        function shareOnWhatsApp() {
+            const url = updateUrl();
+            window.open(`https://wa.me/?text=${encodeURIComponent('انضم إلى حملة تبرعات إصلاح طرق قرية الشغور: ' + url)}`, '_blank');
+        }
+        
+        // مشاركة عبر فيسبوك
+        function shareOnFacebook() {
+            const url = updateUrl();
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
+        }
+        
+        // إعداد أزرار اختيار المبلغ
+        function setupAmountButtons() {
+            const amountButtons = document.querySelectorAll('.amount-button');
+            const amountInput = document.getElementById('amount');
+            
+            amountButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const amount = button.getAttribute('data-amount');
+                    amountInput.value = amount;
+                    
+                    // إضافة تأثير التحديد
+                    amountButtons.forEach(b => b.classList.remove('selected'));
+                    button.classList.add('selected');
+                });
+            });
+        }
+        
+        // عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            checkUrlParams();
+            setupAmountButtons();
+            
+            // معالجة تقديم النموذج
+            document.getElementById('donationForm').addEventListener('submit', function(e) {
+                e.preventDefault();
                 
-                // محاولة حفظ على الخادم
-                try {
-                    await saveDonorsToServer();
-                } catch (error) {
-                    console.error('Failed to save to server:', error);
+                const name = document.getElementById('name').value || 'متبرع كريم';
+                const amount = parseInt(document.getElementById('amount').value);
+                const message = document.getElementById('message').value || 'بارك الله فيكم';
+                
+                if (amount > 0) {
+                    // إضافة المتبرع إلى القائمة
+                    donors.push({ name, amount, message, date: new Date().toISOString() });
+                    totalAmount += amount;
+                    
+                    // حفظ البيانات في localStorage
+                    localStorage.setItem('donors', JSON.stringify(donors));
+                    localStorage.setItem('totalAmount', totalAmount);
+                    
+                    // تحديث العرض
+                    updateTotalAmount();
+                    displayDonors();
+                    
+                    // إظهار رسالة الشكر
+                    document.getElementById('thankYouMessage').style.display = 'block';
+                    
+                    // مسح الحقول
+                    document.getElementById('donationForm').reset();
+                    
+                    // إزالة التحديد من أزرار المبلغ
+                    document.querySelectorAll('.amount-button').forEach(b => b.classList.remove('selected'));
+                    
+                    // تحديث الرابط ليكون قابلاً للمشاركة
+                    updateUrl();
+                    
+                    // إخفاء رسالة الشكر بعد 5 ثوان
+                    setTimeout(() => {
+                        document.getElementById('thankYouMessage').style.display = 'none';
+                    }, 5000);
                 }
-                
-                showNotification('تم حذف التبرع بنجاح');
-            }
-        }
-        
-        // إعادة ضبط جميع البيانات
-        async function resetAllData() {
-            if (confirm('هل أنت متأكد من أنك تريد حذف جميع البيانات؟ لا يمكن التراجع عن هذا الإجراء.')) {
-                donors = [];
-                saveDonorsLocally();
-                renderDonorsTable();
-                updateProgress();
-                
-                // محاولة حفظ على الخادم
-                try {
-                    await saveDonorsToServer();
-                } catch (error) {
-                    console.error('Failed to save to server:', error);
-                }
-                
-                showNotification('تم حذف جميع البيانات');
-            }
-        }
-        
-        // مزامنة البيانات مع الخادم
-        async function syncWithServer() {
-            showNotification('جاري مزامنة البيانات مع الخادم...', 'loading');
-            await loadDonors();
-        }
-        
-        // تصدير البيانات
-        function exportData() {
-            const dataStr = JSON.stringify(donors, null, 2);
-            const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
-            
-            const exportFileDefaultName = 'تبرعات-قرية-الشغور.json';
-            
-            const linkElement = document.createElement('a');
-            linkElement.setAttribute('href', dataUri);
-            linkElement.setAttribute('download', exportFileDefaultName);
-            linkElement.click();
-            
-            showNotification('تم تصدير البيانات بنجاح');
-        }
-        
-        // إعداد البحث
-        function setupSearch() {
-            const searchInput = document.getElementById('searchInput');
-            searchInput.addEventListener('input', function() {
-                const searchTerm = this.value.toLowerCase();
-                const filteredDonors = donors.filter(donor => 
-                    donor.name.toLowerCase().includes(searchTerm) || 
-                    donor.amount.toString().includes(searchTerm) ||
-                    (donor.message && donor.message.toLowerCase().includes(searchTerm))
-                );
-                
-                renderFilteredDonors(filteredDonors);
             });
-        }
-        
-        // عرض المتبرعين بعد التصفية
-        function renderFilteredDonors(filteredDonors) {
-            const tableBody = document.getElementById('donorsTableBody');
-            tableBody.innerHTML = '';
-            
-            if (filteredDonors.length === 0) {
-                tableBody.innerHTML = '<tr><td colspan="4" style="text-align: center;">لا توجد نتائج</td></tr>';
-                return;
-            }
-            
-            filteredDonors.forEach(donor => {
-                const row = document.createElement('tr');
-                
-                row.innerHTML = `
-                    <td class="donor-name">${donor.name}</td>
-                    <td class="donation-amount">${donor.amount.toLocaleString()} ل.ت</td>
-                    <td class="donation-message">${donor.message || '—'}</td>
-                    <td class="actions-cell">
-                        <button class="share-btn" onclick="shareDonation('${donor.name}', ${donor.amount})">
-                            <i class="fab fa-facebook"></i> شارك
-                        </button>
-                        <button class="delete-btn" onclick="deleteDonation(${donor.id})">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </td>
-                `;
-                
-                tableBody.appendChild(row);
-            });
-        }
-        
-        // المشاركة على فيسبوك
-        function shareDonation(name, amount) {
-            const text = `لقد تبرعت بمبلغ ${amount.toLocaleString()} ليرة تركية لمش
+        });
+    </script>
+</body>
+</html>
